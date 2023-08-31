@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Simulation</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .side-animation {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            color: red;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        #left-display,
+        #right-display {
+            border: 1px solid lime;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        .hacked {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Danger Animations */
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(5px);
+            }
+        }
+
+        .danger-text {
+            animation: shake 1s infinite;
+        }
+
+        .danger-icon {
+            color: red;
+            font-size: 24px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .glitch-effect {
+            animation: glitch-text 0.2s infinite alternate;
+        }
+
+        @keyframes glitch-text {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            20%, 60% {
+                transform: translateX(-3px);
+            }
+            40% {
+                transform: translateX(3px);
+            }
+            80% {
+                transform: translateX(-2px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="c:\Users\08-1infO22-17\Downloads\synthetic-deception-loopable-epic-cyberpunk-crime-music-157454.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="side-animation" style="left: 0;">&#9760;</div>
+    <div class="side-animation" style="right: 0;">&#9760;</div>
+    
+    <div class="container">
+        <div id="left-display" class="glitch-effect">
+            <h1 class="danger-text">Hacking in progress...</h1>
+            <p class="danger-text">Target: <span id="target-username"></span></p>
+        </div>
+        <div id="right-display" class="glitch-effect">
+            <h1 class="hacked danger-text">Access granted. System compromised.</h1>
+            <p class="hacked danger-text">Downloading secret files...</p>
+        </div>
+    </div>
+    
+    <script>
+        const targetUsername = document.getElementById('target-username');
+        const leftDisplay = document.getElementById('left-display');
+        const rightDisplay = document.getElementById('right-display');
+        
+        const hackForm = document.createElement('form');
+        const usernameInput = document.createElement('input');
+        const startHackButton = document.createElement('button');
+        
+        hackForm.id = 'hack-form';
+        usernameInput.type = 'text';
+        usernameInput.id = 'username';
+        usernameInput.placeholder = 'Enter your name';
+        startHackButton.type = 'button';
+        startHackButton.id = 'start-hack';
+        startHackButton.textContent = 'Start Hack';
+        
+        hackForm.appendChild(usernameInput);
+        hackForm.appendChild(startHackButton);
+        leftDisplay.appendChild(document.createElement('br'));
+        leftDisplay.appendChild(hackForm);
+        
+        const outputDiv = document.createElement('div');
+        outputDiv.id = 'output';
+        rightDisplay.appendChild(outputDiv);
+        
+        startHackButton.addEventListener('click', () => {
+        
+            const username = usernameInput.value;
+          
+            if (username.trim() === '') {
+                alert('Please enter a valid username.');
+                return;
+            }
+            
+            targetUsername.textContent = username;
+            
+            outputDiv.innerHTML = `<h1 class="hacked danger-text">Access granted. System compromised.</h1>`;
+            outputDiv.innerHTML += `<p class="hacked danger-text">Downloading secret files...</p>`;
+        });
+    </script>
+</body>
+</html>
